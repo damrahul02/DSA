@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int k;
+    struct node *left;
+    struct node *right;
+};
+struct node *newnode (int data) //node for create newnode.
+{
+    struct node *temp=(struct node*)malloc(sizeof (struct node));
+    temp->k=data;
+    temp->left=NULL;
+    temp->right=NULL;
+    return temp;
+}
+struct node *insert(struct node *root,int data) //node for insert an element
+{
+    if (root==NULL)
+    {
+        return newnode(data);
+
+    }
+    else if (root->k<=data)
+    {
+        root->right=insert(root->right,data);
+    }
+    else if (root->k>data)
+    {
+        root->left=insert(root->left,data);
+    }
+    return root;
+}
+void in(struct node *root) //Inorder Traversal of Tree.
+{
+    if (root!=NULL)
+    {
+        in(root->left);
+        printf("%d ",root->k);
+        in(root->right);
+    }
+}
+void pre(struct node *root) //preorder Traversal of Tree.
+{
+    if (root!=NULL)
+    {
+        printf ("%d ",root->k);
+        pre(root->left);
+        pre(root->right);
+    }
+}
+void post(struct node *root) //postorder Traversal of Tree.
+{
+    if (root!=NULL)
+    {
+        post(root->left);
+        post(root->right);
+        printf("%d ",root->k);
+    }
+}
+    int main()
+{
+    struct node *root=(struct node*)malloc(sizeof (struct node)); //Here we create our root node. 
+    root=NULL;
+    int n,x,i;
+    printf ("Enter size of Your Tree: ");
+    scanf ("%d",&n);
+    printf("Enter Your Root: ");
+    scanf ("%d",&x);
+    root=insert(root,x);
+    printf("Enter Coefficient of Your Roots...\n");
+    for (i=1; i<n; i++)
+    {
+        scanf ("%d",&x);
+        root=insert(root,x);
+    }
+    printf ("Inorder: ");
+    in(root);
+    printf("\npostorder: ");
+    post(root);
+    printf("\npreorder: ");
+    pre(root);
+
+    return 0;
+}
