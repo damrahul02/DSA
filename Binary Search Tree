@@ -14,7 +14,7 @@ struct node *newnode (int data) //node for create newnode.
     temp->right=NULL;
     return temp;
 }
-struct node *insert(struct node *root,int data) //node for insert an element
+struct node *insert(struct node *root,int data) // function for insert an element using recursion. 
 {
     if (root==NULL)
     {
@@ -67,12 +67,12 @@ void post(struct node *root) //postorder Traversal of Tree.
     scanf ("%d",&n);
     printf("Enter Your Root: ");
     scanf ("%d",&x);
-    root=insert(root,x);
+    root=insert(root,x); //passing the root node.
     printf("Enter Coefficient of Your Roots...\n");
     for (i=1; i<n; i++)
     {
         scanf ("%d",&x);
-        root=insert(root,x);
+        root=insert(root,x); //here we passing the coefficient of our root node.
     }
     printf ("Inorder: ");
     in(root);
